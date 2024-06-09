@@ -1,0 +1,826 @@
+the Script tag ie <script> has a src attribute or code inside it.
+The src and code can never be together.
+
+<script src = "file.js">
+   alert(1); Content is ignored because src is set.
+<script>   
+
+
+<script src="file.js"></script>
+<script>
+  alert(1);
+</script>
+
+
+Code structure 
+
+Statement : Statements are syntax construct and commands that perform actions
+
+Statements are seperated with a semicolon
+and we can have any number of statement in our code.
+alert('Hello'); alert('World');alert("World again");
+
+When a line break exists a semicolon is omitted.
+JavaScript interprets a line break as semicolon
+
+
+JavaScript puts semicolon most of the times but not everytime.
+
+-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+                               useStrict
+
+Old JavaScript code needs an additional line of code to run using modern JavaScript 
+what is useStrict so that it can work modern way.
+
+it is always includes at the top of the program
+
+"use strict";
+
+// this code works the modern way
+...
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+// this won't work //
+
+alert("some code");
+// "use strict" below is ignored--it must be at the top
+
+"use strict";
+
+// strict mode is not activated
+
+
+
+if useStrict is not working
+(function(){
+  'use strict';
+})()
+
+this is to be used.
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                                    VARIABLE
+A variable is a named storage for data.
+We can use variables to store goodies, visiors, and other data.
+
+let message;       // declaring a variable
+message = 'Hello'    // we assigned a value 'Hello' to the message variable
+
+= is called assignment variable
+
+let message;
+message = 'Hello!';
+alert(message);
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+                          FUNCTIONAL PROGRAMMING 
+language that don't allow changing value from a variable.
+like Haskell,
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+                           Naming of variables
+
+Only letters, numbers and symbols can be used 
+first character must never be a number.
+let $ = 10;
+let _ = 20: 
+these both also work and only $ and _ work 
+no other symbol work that way.
+my-name :: hypens also do not work
+let 1a = 12;  don't work
+
+// variables can be used of any speific language..
+//  Reserved names :: these names can't be used 
+
+break case catch class const continue debugger default delete do
+else export extends false finally for function if in
+instanceof new null super this true typeof var void
+while with import return switch throw try
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+const are called constants, they can't be reassigned....
+
+const myBirthday = '18.04.1982';
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                          String and Quotes
+
+A string in JavaScript must always be surrounded by quotes.
+three types of quotes:
+
+Double quotes 
+Single
+Backtick
+
+Double and single are called single quotes 
+and backticks are called extended functionality quotes
+
+-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+                           Boolean
+only 2 values either true or false    
+comparison also gives boolean value
+
+
+-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+null :: 
+
+null in JS doesn't represent a non-existing-object but a value which is empty
+nothing or unknown.
+
+if ::
+let age = null;
+it means age is not known.
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+Undefiened ::
+
+undefiened means that value is not assigned.
+let a;
+alert(a) will give undefiened or
+let a = undefiened 
+alert(a) will give undefiened
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Symbol type is used to create uni9que identifiers for objects
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+typeof :: 
+
+typeof is a operator which returns am operand
+
+typeof undefiened // "undefiened"
+typeof 10 // "number"
+typeof 10n // "bigint"
+typeof true // "boolean"
+typeof "foo" // "string"
+typeof Symbol("id") // "symbol"
+typeof Math // "object"  (1)
+typeof null // "object"  (2)
+typeof alert // "function"  (3)
+
+
+Summary 
+
+number for numbers of any kind: integer or floating-point,
+integers are limited by ±(253-1)
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Interactions  :: 
+That makes us interact with the user.
+1. alert
+2. prompt
+3. confirm
+
+input = prompt(title, [default])
+[..] it shows that it is optional 
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+String Concatenation with binary +
+
+let s = "my" + "string"
+alert(s)
+
+unary + operator 
+
+unary + operator convert a string in to a number
+alert(+true) // 1
+alert(+"")   // 0
+
+
+
+precedence order of the operations in JavaScript
+
+14	unary plus	+
+14	unary negation	-
+13	exponentiation	**
+12	multiplication	*
+12	division	/
+11	addition	+
+11	subtraction	-
+…	…	…
+2	assignment	=
+…	…	…
+
+assignment operator ( =  )
+return a value stored in it
+
+
+comparison with null and undefined 
+
+null == undefined
+null is only equal to undefined and to nothing else..
+null == 0 //false
+null>0 // false
+null >= 0 //true comparison convert null to Number which is 0
+
+
+undefined ::
+undefined == 0 //false 
+undefiened > 0 //false
+undefined >= 0 //false comparison convert undefiened to NaN
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+And gives the first falsy value or the last value.
+Or gives the first truthy value or the last value.
+
+
+!! convert the value into Boolean value
+
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+Property Name Limitation ::  
+
+let obj = {
+  for : 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );
+
+for, let, return are used
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+__proto__ when used as a variable name  can only store objects
+
+** A notable feature of objects in JavaScript, compared to many other languages, 
+is that it’s possible to access any property. There will be no error if the
+property doesn’t exist!
+
+let user = {};
+
+alert( user.noSuchProperty === undefined ); // true means "no such property"
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+"key" in object 
+
+let user = { name : "John}
+
+"key" in obj // true is key exists..
+
+when we use a loop the object gets ordered if variables were integers
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Object.assign(dest, ...sources)
+
+let user = {name: "john"};
+
+let permission1 = { canView: true};
+let permission2 = {canEdit : true};
+
+Object.assign(user, permission1, permission2);
+
+
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+Nested Cloning :: 
+
+
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+alert( user.sizes.height );
+
+
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+let clone = Object.assign({}, user);
+
+alert( user.sizes === clone.sizes ); // true, same object
+
+// user and clone share sizes
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); 
+
+
+The structuredClone method can clone most data types, such as objects, arrays, primitive values.
+
+It also supports circular references, when an object property references the object itself (directly or via a chain or references).
+
+
+
+
+
+
+
+-------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+
+Optional Chaining 
+
+let user = {}
+alert(usr.address.street) // error
+
+but with optional chaining 
+
+alert(user.address ? user.address.street : undefined)
+
+value?.prop 
+means value.prop if value exists 
+
+let user = {}
+alert(user?.address?.street);
+
+?.()  ,, ?.[]
+
+let userAdmin = {
+  admin(){
+    alert("I am admin);
+  }
+};
+let userGuest = {}
+usrAdmin.admin?.()
+userGuest.admin?.()
+
+?.() - gies obj.method() if the obj exists  
+
+?.[] - gives obj[props] if obj exists 
+
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+obj?.prop – returns obj.prop if obj exists, otherwise undefined.
+obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
+obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+Symbols
+
+Declaration ::
+let id = Symbol("id");
+
+why Symbol("id") not "id" ?
+
+::  with Symbol("id") we can keep a value private for a object
+
+use :: 
+
+let id = Symbol("id")
+let user = {
+  name : "john",
+  age : 30,
+  [id] : 123
+};
+
+for(let key in user) alert(key); for...in loops ignore symbols 
+
+alert("Direct:" + usr[id] );    // Direct : 123
+
+Symbol.for(key)  :: this checks the global registry for sybols if the 
+symbol exists or not ,, if not it creates a new symbol.
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+
+                    " Methods of Premitives "  
+__________________________________________________________________________
+--------------------------------------------------------------------------                    
+
+string, nuber, bigint, boolean, symbol, undefined, null
+
+Objects are reference type.
+Object can also store a function... a function itself is a object
+
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+Strings are immutable
+
+Strings can't be changed in JavaScript.It is impossible to change a character.
+
+str.lastIndexOf(substr, position)  // It would list the occurrences in the reverse order.
+str.indexOf(substr, position) // it gives occurance from the start..
+
+to find a substring(if it is multiple times)
+
+let str = "as the sun shines, as the moon shines, as the star twinkles;
+let substring = "as";
+let pos = 0;
+while(true){
+  let foundPos = str.indexOf(substring, pos);
+  if(foundPos == -1){
+    break;
+  }
+  alert( `Found at ${foundPos})
+  pos = foundPos + 1;
+}
+
+"" includes, startWith, endWith "" 
+
+includes :: gives boolean value if substring is present or not..
+
+"sfsdrgdrg".includes("sfs") // true
+
+startsWith ::
+alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
+
+endsWith :: 
+alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
+
+__________________________________________________________________________
+__________________________________________________________________________
+
+Getting a substring ::
+1. Slice ::  str.slice(a,b) a is includes, b is excluded
+            + and - value both are acepted.
+2. substring :: str.substring(a,b) a is included, b is excluded 
+                - value is not accepted    
+3. substr :: str.substr(a,b) a is the beginning and b is the length of substring.
+                
+__________________________________________________________________________
+__________________________________________________________________________
+
+Comparing strings ::
+
+alert( 'a' > "Z") // true
+
+__________________________________________________________________________
+__________________________________________________________________________
+
+Array :: 
+
+Array is a object which has arranged collection of elements.
+Declaration :: new Array();
+               []
+let arr = new Array(4);
+arr.length     // 4
+
+let arr2 = [3];
+arr2.lengtgh    //1
+
+let fruits = ["Jazz"]
+
+
+__________________________________________________________________________
+__________________________________________________________________________
+Array Methods ::
+==> Add/remove items
+
+=> arr.push(...items) – adds items to the end,
+=> arr.pop() – extracts an item from the end,
+=> arr.shift() – extracts an item from the beginning,
+=> arr.unshift(...items) – adds items to the beginning.
+=> arr.splice(i1, i2, item1, item2 .....); i2= starting from this index,
+i2= number of elements to delete, item1, item2 ... the items to add..
+    **i1 can be negative too
+=> arr.slice(i1,i2)
+
+=> CONCAT  
+
+// let arr = [1,2]
+// let arrayLike = {
+//     0: "something",
+//     length: 1
+// }
+
+// let concatedArr = arr.concat(arrayLike)
+// alert(concatedArr)
+
+// let arrayLike2 ={
+//     0: "rana",
+//     1: 23,
+//     [Symbol.isConcatSpreadable] : true,
+//     length: 2
+// }
+
+// let concatedArr2 = arr.concat(arrayLike2)
+// alert(concatedArr2) 
+
+=> ITERATE
+
+// arr.forEach is used to run a function fro each Element in 
+//     thr array
+
+// let array = ["Tanu", "Lamba", "is", "love"];
+
+// array.forEach((item , index, garry)=>{
+//     alert(`${item} is at ${index} in ${garry}`)
+// })
+
+__________________________________________________________________________
+__________________________________________________________________________
+indexOf/lastIndexOf and includes
+
+=> indexOf
+
+let arr = [1, 0, false];
+
+let ind = arr.indexOf(0, 2);
+alert(ind)
+
+includes
+
+let exists = arr.includes(0,1);
+alert(exists)
+
+=> lastIndexOf 
+
+let fruits = ['Apple', 'Orange', 'Apple']
+let index = arr.lastIndexOf("Apple");
+alert(index)
+
+const array = [NaN];
+
+alert(array.indexOf(NaN))
+alert(array.includes(NaN))
+
+let users = [
+    {id: 1, name: "John", des: "des pa cito"},
+    {id: 2, name: "sagar",des: "des pa cito"},
+    {id: 3, name: "rana",des: "des pa cito"},
+];
+
+let user = users.find(items =>items.name == "sagar");
+alert(user.des);
+
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"},
+  {id: 4, name: "John"}
+];
+
+let index = users.findIndex(user => user.name == "John")
+alert(index)
+
+let lastIndex = users.findLastIndex(user => user.name == "John")
+alert(lastIndex)
+__________________________________________________________________________
+__________________________________________________________________________
+// Filter //
+
+let users = [
+    {id:1, name: "sagar"},
+    {id:2, name: "amar"},
+    {id:3, name: "arnav"}
+
+];
+
+let filteredArray = users.filter(item => item.id<3);
+filteredArray.forEach(user => alert(user.name + user.id))
+
+__________________________________________________________________________
+__________________________________________________________________________
+// Map //
+let result = arr.map(function(item, index, array) {
+  // returns the new value instead of item
+});
+
+
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+alert(lengths); // 5,7,6
+
+__________________________________________________________________________
+__________________________________________________________________________
+// sort(fn) //
+
+let arr =[1,2,15];
+arr.sort() // 1,15,2 sort compares by converting into strings //
+
+// Defining a function explicitly ::
+function compareNumeric(a,b){
+    if(a > b) return 1;
+    if (a == b) return 0;
+    if (a < b ) return -1;
+    
+}
+
+let arr = [ 1, 2, 15 ];
+
+// Same thing in a shorter way
+let arrr = arr.sort((a,b) => a-b);
+alert(arrr);
+//for String we use localeCompare
+let ar = ['Österreich', 'Andorra', 'Vietnam']
+alert(ar.sort((a,b) => a > b ? 1 : -1))
+alert(ar.sort((a,b) => a.localeCompare(b)))
+
+__________________________________________________________________________
+__________________________________________________________________________
+reverse
+
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+alert( arr ); // 5,4,3,2,1
+
+A cheat sheet of array methods:
+
+1. To add/remove elements:
+
+=>   push(...items) – adds items to the end,
+=>   pop() – extracts an item from the end,
+=>   shift() – extracts an item from the beginning,
+=>   unshift(...items) – adds items to the beginning.
+=>   splice(pos, deleteCount, ...items) – at index pos deletes deleteCount elements and inserts items.
+=>   slice(start, end) – creates a new array, copies elements from index start till end (not inclusive) into it.
+=>   concat(...items) – returns a new array: copies all members of the current one and adds items to it. If any of items is an array, then its elements are taken.
+2. To search among elements:
+
+=>   indexOf/lastIndexOf(item, pos) – look for item starting from position pos, and return the index or -1 if not found.
+=>   includes(value) – returns true if the array has value, otherwise false.
+=>   find/filter(func) – filter elements through the function, return first/all values that make it return true.
+=>   findIndex is like find, but returns the index instead of a value.
+3. To iterate over elements:
+=>   forEach(func) – calls func for every element, does not return anything.
+=>   for of
+=>   for
+3.To transform the array:
+
+=>   forEach(func) – calls func for every element, does not return anything.
+=>   map(func) – creates a new array from results of calling func for every element.
+=>   sort(func) – sorts the array in-place, then returns it.
+=>   reverse() – reverses the array in-place, then returns it.
+=>   split/join – convert a string to array and back.
+=>   reduce/reduceRight(func, initial) – calculate a single value over the array by calling func for each element and passing an intermediate result between the calls.
+4. Additionally:
+
+=>   Array.isArray(value) checks value for being an array, if so returns true, otherwise false.
+Please note that methods sort, reverse and splice modify the array itself.
+
+These methods are the most used ones, they cover 99% of use cases. But there are few others:
+
+=>   arr.some(fn)/arr.every(fn) check the array.
+
+The function fn is called on each element of the array similar to map. If any/all results are true, returns true, otherwise false.
+
+These methods behave sort of like || and && operators: if fn returns a truthy value, arr.some() immediately returns true and stops iterating over the rest of items; if fn returns a falsy value, arr.every() immediately returns false and stops iterating over the rest of items as well.
+
+We can use every to compare arrays:
+
+function arraysEqual(arr1, arr2) {
+  return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+}
+
+alert( arraysEqual([1, 2], [1, 2])); // true
+=>   arr.fill(value, start, end) – fills the array with repeating value from index start to end.
+
+=>   arr.copyWithin(target, start, end) – copies its elements from position start till position end into itself, at position target (overwrites existing).
+
+=>   arr.flat(depth)/arr.flatMap(fn) create a new flat array from a multidimensional array.
+
+-____________________________________________________________________________
+_______________________________________________________________________-_______________________________________________________________________
+WeakMap and WeakSet :: 
+
+WeakMap is Map-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
+
+WeakSet is Set-like collection that stores only objects and removes them once they become inaccessible by other means.
+
+Their main advantages are that they have weak reference to objects, so they can easily be removed by garbage collector.
+
+That comes at the cost of not having support for clear, size, keys, values…
+
+WeakMap and WeakSet are used as “secondary” data structures in addition to the “primary” object storage. Once the object is removed from the primary storage, if it is only found as the key of WeakMap or in a WeakSet, it will be cleaned up automatically.
+
+
+Object.keys, values, entries
+For plain objects, the following methods are available:
+
+Object.keys(obj) – returns an array of keys.
+Object.values(obj) – returns an array of values.
+Object.entries(obj) – returns an array of [key, value] pairs.
+
+
+
+// setInterval and setTimeout 
+
+
+// function printNumber(from, to){
+//     let current = from;
+
+//     let timerId = setInterval(function(){
+//         alert(current);
+//         if(current == to){
+//             clearInterval(timerId)
+//         }
+//         current++
+//     }, 1000)
+// }
+
+// printNumber(5,10)
+
+
+
+
+// function printNumberAgain(from, to){
+//     let current = from;
+
+//     let timerId = setTimeout(function go(){
+//         alert(current);
+//         if(current<to){
+//             setTimeout(go,1000);
+//         }
+//         current++
+//     }, 1000);
+// }
+
+// Caching Decorator
+
+function slow(x) {
+  // there can be a heavy CPU-intensive job here
+  alert(`Called with ${x}`);
+  return x;
+}
+
+function cachingDecorator(func) {
+  let cache = new Map();
+
+  return function(x) {
+    if (cache.has(x)) {    // if there's such key in cache
+      return cache.get(x); // read the result from it
+    }
+
+    let result = func(x);  // otherwise call func
+
+    cache.set(x, result);  // and cache (remember) the result
+    return result;
+  };
+}
+
+slow = cachingDecorator(slow);
+
+alert( slow(1) ); // slow(1) is cached and the result returned
+alert( "Again: " + slow(1) ); // slow(1) result returned from cache
+
+alert( slow(2) ); // slow(2) is cached and the result returned
+alert( "Again: " + slow(2) );
+
+
+
+// printNumberAgain(6,14)
+
+function go(name, words){
+    alert(name  + ": " + words)
+    
+}
+
+let timerId = setTimeout(go, 1000, "sagar", "awake arise and stop not until the gal is reached")
+
+let timer2 = setInterval(go, 2000, "sagar", "lage raho")
+
+setTimeout(()=>{clearInterval(timer2), alert("stop")}, 5000)
+

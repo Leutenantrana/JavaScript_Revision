@@ -1,0 +1,368 @@
+// func.call(obj, 1,2,3)
+
+function sayhi(){
+    alert(this.name)
+}
+
+
+// // function sayhi(){
+//   alert(this.name);
+// }
+
+// let usr = {name: "sagar"}
+
+// sayhi.call(usr)
+
+
+// function sayHii(arg1,arg2){
+//   alert(this.name + ': ' + arg1 + arg2);
+// }
+
+// let user = { name : "sagar"}
+
+// sayHii.call(user, "says " , "fuck you bitch " )
+
+
+
+let worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    // scary CPU-heavy task here
+    alert("Called with " + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+// same code as before
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func(x); // (**)
+    cache.set(x, result);
+    return result;
+  };
+}
+
+alert( worker.slow(1) ); // the original method works
+
+worker.slow = cachingDecorator(worker.slow); // now make it caching
+
+alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined
+
+
+
+let worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    alert("Called with " + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func.call(this, x); // "this" is passed correctly now
+    cache.set(x, result);
+    return result;
+  };
+}
+
+worker.slow = cachingDecorator(worker.slow); // now make it caching
+
+alert( worker.slow(2) ); // works
+alert( worker.slow(2) );
+
+// more powerful caching decoder 
+
+let worker = {
+  slow(min, max) {
+    alert(`Called with ${min},${max}`);
+    return min + max;
+  }
+};
+
+function cachingDecorator(func, hash) {
+  let cache = new Map();
+  return function() {
+    let key = hash(arguments); // (*)
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    let result = func.call(this, ...arguments); // (**)
+
+    cache.set(key, result);
+    return result;
+  };
+}
+
+function hash(args) {
+  return args[0] + ',' + args[1];
+}
+
+worker.slow = cachingDecorator(worker.slow, hash);
+
+alert( worker.slow(3, 5) ); // works
+alert( "Again " + worker.slow(3, 5) );
+
+
+// func.apply
+
+_________________________________________________________________________----
+---------------------------------------------------------------------------
+
+func.apply(context, args);
+
+It runs the func setting this=context and using an array-like object args as the list of arguments.
+
+The only syntax difference between call and apply is that call expects a list of arguments, while apply takes an array-like object with them.
+
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Property Flags and Descriptors
+Object properties, besides a value, have three special attributes (so-called “flags”):
+
+
+Descriptors ::
+The method Object.getOwnPropertyDescriptor allows to query the full information about a property.
+
+Syntax ::
+let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);
+
+
+// let group ={
+//   title : "Our Group",
+//   student : ["John", "Sagar", "Rana"],
+
+//   showList(){
+//   this.student.forEach( student => alert(this.title + ": " + student))
+//   }
+// }
+// let descriptor = Object.getOwnPropertyDescriptor(group, 'title');
+// alert(JSON.stringify(descriptor, null, 6));
+
+
+
+// let obj = {}
+
+// Object.defineProperty(obj, "name", {
+//   value : "John",
+//   writable : true,
+//   enumerable : true,
+  
+// })
+
+// // alert(obj.name)
+
+// // let descriptor =  Object.getOwnPropertyDescriptor(obj, "name");
+// // alert(JSON.stringify(descriptor, null, 4))
+
+// Object.defineProperty(obj, "name", {
+//   writable: false
+// })
+
+// let descriptor =  Object.getOwnPropertyDescriptor(obj, "name");
+// alert(JSON.stringify(descriptor, null, 4))
+
+// obj.name = maun;
+
+// enumeerable 
+
+
+// let user = {
+//   name: "sagar",
+//   toString(){
+//     return this.name;
+//   }
+// };
+
+// for (let key in user) alert(key)
+
+// Object.defineProperty(user, "toString", {
+//   enumerable: false,
+//   configurable : false,
+// });
+
+// // for ( let key in user) alert(key)
+
+// // alert(Object.keys(user)); // name 
+// //non enumerable are also excluded from Object.keys
+
+// delete usr.toString;
+
+// if an Object property is non configurable it can't be deleted
+
+
+_________________________________________________________________________----
+---------------------------------------------------------------------------
+let user ={}
+Object.defineProperty(user, "name", {
+  value: "sagar",
+  writable: false,
+  enumeerable: false,
+  configurable: false,  
+})
+
+user.name = "rana"
+alert(user.name)
+for (let key in user) alert(key)
+delete user.name
+alert(user.name)
+
+let user1 ={}
+Object.defineProperty(user1, "name", {
+  value : "tanu",
+  writable: true,
+  enumeerable: true,
+  configurable: true,  
+})
+
+user1.name = "rana"
+alert(user1.name)
+for (let key in user1) alert(key)
+delete user1.name
+alert(user1.name)
+
+
+let obj = {
+  name: 'Alice',
+  age: 30,
+  getDetails: function() {
+    return `${this.name}, ${this.age}`;
+  }
+};
+// printing the descriptors// flag values
+alert(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 6))
+
+
+
+
+
+
+OBJECT CLONING SHOUL ALWAYS BE DONE WITH OBJECT.defineProperty 
+_________________________________________________________________________----
+---------------------------------------------------------------------------
+// Clone the object //
+
+let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+
+// printing the flags of clone
+alert(JSON.stringify(Object.getOwnPropertyDescriptors(obj), null, 6))
+
+
+// Modify the clone to verify that it is a separate object
+clone.name = 'Bob';
+
+alert(obj.name); // Output: Alice
+alert(clone.name); // Output: Bob
+alert(clone.getDetails());
+
+// another way to clone Objects
+
+//why should we use Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj))
+// over for of loop to copy objects?
+
+// because :: for of loop ignores symbolic and non- enumerable while
+// copying and cloning the array
+
+
+for (let key in user) {
+  clone[key] = user[key]
+}
+_________________________________________________________________________----
+---------------------------------------------------------------------------
+
+
+                    Sealing an object globally
+
+
+Object.preventExtensions(obj) :: forbids addition of new properties
+
+Object.seal(obj) :: forbids adding and removing of properties
+
+Object.freeze(obj) :: forbids adding, removing and changing of properties
+
+
+_________________________________________________________________________----
+---------------------------------------------------------------------------
+PROPERTY GETTERS AND SETTERS
+
+
+There are two kinds of object properties,
+
+1. data properties
+2. Accessor properties
+
+
+Getters and Setters
+Accessors propertiees looks like function from outside but are like regular 
+properties of JS object
+
+//Example
+
+let user = {
+  name: "John",
+  surname: "Smith",
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
+};
+
+alert(user.fullName); // John Smith
+
+// Smarter getter/Setters
+
+let user = {
+  get name(){
+    return this._name;
+  },
+  set name(value){
+    if(value.length<4){
+      alert("Name is too short, need at least 4 characters");
+
+    }
+    this._name = value;
+    
+  }
+}
+
+user.name = "Sagar"
+alert(user.name)
+user.name = " ";
+
+
+
+// Use for compatiblity//
+
+
+function User(name, birthday){
+  this.name = name;
+  this.birthday = birthday;
+
+  Object.defineProperty(this, "age", {
+    get(){
+      let todayYear = new Date().getFullYear();
+      return todayYear - this.birthday.getFullYear();
+    }
+  })
+}
+
+let john = new User("John", new Date(1992, 6, 1));
+alert( john.birthday)
+alert(john.age)
+
