@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sagar {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+        
+        .sagar2 {
+            padding: 15px;
+            border: 1px solid rgb(238, 216, 174);
+            border-radius: 4px;
+            color: #d1a30a;
+            background-color: #dff0d8;
+        }
+    </style>
+</head>
+
+<body>
+    <ol id="ol">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+
+    </ol>
+
+    <script>
+        let div = document.createElement('div');
+        div.innerHTML = "Hey there Sagar Rana here";
+        div.className = "sagar"
+
+        let div2 = document.createElement('div');
+        div2.innerHTML = "you are at the end of it";
+        div2.className = "sagar2"
+
+        let liFirst = document.createElement('li');
+        liFirst.innerHTML = 'prepend';
+        ol.prepend(liFirst)
+
+        let liLast = document.createElement('li')
+        liLast.innerHTML = "append";
+        ol.append(liLast)
+        ol.before(div)
+        ol.after(div2)
+    </script>
+</body>
+
+</html>

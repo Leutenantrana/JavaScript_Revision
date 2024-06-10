@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- // attribute names are case sensitive -->
+    <input value="click me" OnClIcK="countPoints()" type="button">
+    <!-- setting onclick with DOM -->
+    <input value="Button 2" type="button" id="button2">
+    <!-- handler with JavaScript overwrites handler with HTML  -->
+    <input value="Button 3" type="button" id="button3" onclick="alert('clickhtml')">
+    <!-- removing a handler -->
+    <input value="Button 4" type="button" id="button4" onclick="alert('clickhtml')">
+    <!-- this inside the handler function -->
+    <button onclick="alert(this.innerHTML)">Click Button one</button>
+    <!-- saythanks() in HTML but saythanks in JS -->
+    <button onclick="saythanks()">Button 5</button>
+    <!-- For JS  -->
+    <button id="button6">Button 6</button>
+    <!-- don't use setAttribute for handler   -->
+    <input id="input11" value="new button11" type="button">
+
+    <script>
+        button2.onclick = function() {
+            alert('click!')
+        }
+
+        function countPoints() {
+            for (let i = 0; i < 10; i++) {
+                alert("Rabbit Number :" + i);
+            }
+        }
+
+        button3.onclick = function() {
+            alert('clickJS!')
+        }
+
+        button4.onclick = null;
+
+        function saythanks() {
+            alert('Thanks')
+        }
+
+        button6.onclick = saythanks;
+        // <!-- don't use setAttribute for handler   -->
+        document.body.setAttribute('onclick', function() {
+                alert('doesnt matter');
+            }) // doesn't work why?
+            // setAttribute are always string
+            // function become string
+            // addEventListner allows multiple responses to a single event
+        input11.addEventListener("click", () => {
+            alert('hi from add EventListner')
+        });
+        // removing eventListner
+        input11.removeEventListener("click", () => alert('hi from add event listner'))
+            // doesn;t work why?  bcz both functon are different
+            //store function in variable
+
+        function handler() {
+            alert('hi from eventListner again')
+        }
+        input11.addEventListener("click", handler);
+        // now passing function with same variable will work
+        input11.removeEventListener("click", handler);
+        // some events can't be assigned with DOM property
+        // onDOMContentLoaded
+        document.onDOMContentLoaded = function() {
+                alert("DOM built")
+
+            }
+            // this works
+        document.addEventListener("DOMContentLoaded", function() {
+            alert("DOM built")
+        })
+    </script>
+</body>
+
+</html>

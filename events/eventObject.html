@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="Click me" id="elem">
+    <!-- event onject is also avail for HTMl -->
+    <input type="button" onclick="alert(event.type)" value="Event type">
+    <!-- object as a event handler -->
+    <button id="button1">Button 1</button>
+    <!-- object of custom class as a event handler -->
+    <button id="button1">Button 2</button>
+    <!-- html for custom class example -->
+    <button id="elem">press me</button>
+
+
+    <script>
+        elem.onclick = function(event) {
+            alert(event.type + " at " + event.currentTarget);
+            alert("Coordinated :" + event.clientX + ":" + event.clientY)
+        };
+
+        let obj = {
+            handleEvent(event) {
+                alert(event.type + " at " + event.currentTarget)
+                alert("co-ordinates : " + event.clientX + ":" + event.clientY)
+            }
+        }
+        button1.addEventListener("click", obj)
+
+
+        // Custom Class to handle event
+
+        class Menu {
+            handleEvent(event) {
+                let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+
+            }
+
+            onMousedown() {
+                elem.innerHTML = "Mouse button pressed";
+            }
+            onMouseup() {
+                elem.innerHTML += "...and released.";
+            }
+        }
+
+        let menu = new Menu();
+
+        elem.addEventListener('mousedown', menu);
+        elem.addEventListener('mouseup', menu);
+    </script>
+</body>
+
+</html>

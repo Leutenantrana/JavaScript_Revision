@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body something="non-standard">
+
+    <!-- <div id="elem" about="Elephant" somethhin="non-standard"></div> -->
+    <!-- <input> -->
+
+    <!-- <input id="input" type="checkbox" checked> checkbox -->
+    <!-- <div id="div" style="color:red; font-size: 120%;">Hello</div> -->
+    <a id="a" href="#hello">link</a>
+    <script>
+        //-----------------------------------------------------------------//
+
+        alert(a.getAttribute('href')) //here string 
+        alert(a.href) // here it is the complete link
+            //--------------------------------------------------------------//
+
+        // alert(div.getAttribute("style")) // getAttribute gives attribute whih is different from property
+        // alert(div.style)
+
+
+        //---------------------------------------------------------------//
+        // alert(input.getAttribute('checked')); // null string
+        // alert(input.checked) // true (Boolean)
+
+
+        //----------------------------------------------------------------//
+        // attribute-property syncronization
+        // let input = document.querySelector('input');
+        // attribute => property
+        // input.setAttribute('value', 'text')
+        // alert(input.value)
+        // NOT property => attribute 
+        // input.value = 'newValue';
+        // alert(input.getAttribute('Value'))
+        // why? one-way binding for some values like 'value', 'checked', 'selected'..
+
+        //-------------------------------------------------------------//
+
+        // setting attributes and getting property //
+        // let elem = document.getElementById("elem")// making a dom object instance 
+
+        // alert(elem.getAttribute('About')); // it prints the value
+
+        // elem.setAttribute("Test", 123);
+        // elem.setAttribute("attribu", "sagarika")
+
+        // alert(elem.outerHTML)
+        // // all the attributes are iterable
+        // for (let arrt of elem.attributes) {
+        //     alert(`${arrt.name} : ${arrt.value}`)
+        // }
+    </script>
+</body>
+
+</html>

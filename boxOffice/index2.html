@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alert {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">DIV</div>
+
+    <script>
+        //elem.insertAdjacentHTML(where, html). // beforebegin, afterbegin, beforeend, afterend
+        div.before('<p>Hello</p>', document.createElement('hr')) // before inserts html paragraph as a string
+        div.insertAdjacentHTML('beforebegin', '<p> Hello from First </p>') //insertAdjacentHTML insert html as a DOM
+        div.insertAdjacentHTML('afterbegin', '<p> Hello from within still first </p>')
+        div.insertAdjacentHTML('beforeend', '<p> Hello from Within but last </p>')
+        div.insertAdjacentHTML('afterend', '<p> Hello from outside last </p>')
+
+        // document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
+        //   <strong>Hi there!</strong> You've read an important message.
+        // </div>`);
+
+        let divv = document.createElement('div')
+        divv.className = "alert";
+        divv.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+        document.body.prepend(divv);
+        setTimeout(() => divv.remove(), 5000);
+    </script>
+</body>
+
+</html>
